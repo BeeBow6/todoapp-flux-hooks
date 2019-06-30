@@ -1,15 +1,15 @@
 /**
  * フィルターの切替
  */
-import React, { useContext } from 'react';
-import TodoContext from '../context';
+import React from 'react';
+import { useFilter } from '../stores';
 import Link from '../components/link';
 import { setVisibilityFilter } from '../actions';
 
 const FilterLink = ({ filter, children }) => {
 
   // context経由でstoreのデータを受け取る
-  const { visibilityFilter, dispatch } = useContext(TodoContext);
+  const [visibilityFilter, dispatch] = useFilter();
 
   return (
     <Link

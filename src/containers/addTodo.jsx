@@ -1,14 +1,14 @@
 /**
  * Todo追加
  */
-import React, { useState, useContext } from 'react';
-import TodoContext from '../context';
+import React, { useState } from 'react';
+import { useTodos } from '../stores';
 import { addTodo } from '../actions';
 
 const AddTodo = () => {
 
   const [inputText, setInputText] = useState('');
-  const { dispatch } = useContext(TodoContext);
+  const [, dispatch] = useTodos();
 
   return (
     <div>

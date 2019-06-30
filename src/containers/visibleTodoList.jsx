@@ -1,19 +1,22 @@
 /**
  * Todoリストの表示調整
  */
-import React, { useContext } from 'react';
-import TodoContext from '../context';
-import TodoList from '../components/todoList';
+import React from 'react';
 import {
-  toggleTodo,
-  VisibilityFilters
+  useTodos,
+  useFilter
+} from '../stores';
+import {
+  VisibilityFilters,
+  toggleTodo
 } from '../actions';
-
+import TodoList from '../components/todoList';
 
 const VisibleTodoList = () => {
 
-  // context経由でstoreのデータを受け取る
-  const { todos, visibilityFilter, dispatch } = useContext(TodoContext);
+  const [todos, dispatch] = useTodos();
+  const [visibilityFilter] = useFilter();
+
   let visibleTodos;
 
   switch (visibilityFilter) {
@@ -33,7 +36,7 @@ const VisibleTodoList = () => {
   return (
     <TodoList
       todos={visibleTodos}
-      toggleTodo={(id) => { dispatch(toggleTodo(id)) }}
+      toggleTodo={id => { dispatch(toggleTodo(id)) }}
     />
   );
 };
